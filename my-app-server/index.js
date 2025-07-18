@@ -1,30 +1,33 @@
 const express = require('express');
 const cors = require('cors');
-const bodyParser = require('body-parser');
 const app = express();
-const port = 5000;
+const port = 5020;
+
 
 app.use(cors());
-app.use(bodyParser.json());
+
 
 let data = [
-  { id: 1, name: 'Item 1' },
-  { id: 2, name: 'Item 2' },
-  { id: 2, name: 'Item 3' },
+  { id: 1, name: 'Joker', moviename:'The Dark Knight' },
+  { id: 2, name: 'Silver Surfer', moviename:'Fantastic 4' },
+  { id: 3, name: 'Will Hunting', moviename:'Good Will Hunting' },
 ];
+
+let Sports =[
+  {id: 1, sport : 'Soccer'},
+  {id: 2, sport : 'Cricket'},
+  {id: 3, sport : 'Hockey'},
+];
+
 
 app.get('/api/items', (req, res) => {
   res.json(data);
 });
 
-app.post('/api/items', (req, res) => {
-  const newItem = {
-    id: data.length + 1,
-    name: req.body.name,
-  };
-  data.push(newItem);
-  res.json(newItem);
+app.get('/api/Sports', (req, res) => {
+  res.json(Sports);
 });
+
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
